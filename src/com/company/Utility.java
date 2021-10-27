@@ -3,20 +3,12 @@ package com.company;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Utility {
     static String inputString(String message){
         Scanner in = new Scanner(System.in);
         System.out.print(message);
         String str = in.nextLine();
-        return str;
-    }
-    static char inputChar(String message){
-        Scanner in = new Scanner(System.in);
-        System.out.print(message);
-        char str = in.nextLine().charAt(0);;
         return str;
     }
     static void printDelimiter(int format){
@@ -34,12 +26,6 @@ public class Utility {
         }catch (Exception ignored){};
         return sum;
     }
-    static String List2String(List<String> list,String delimiter,String prefix,String suffix){
-        String new_line = list.stream()
-                .map(n -> String.valueOf(n))
-                .collect(Collectors.joining(delimiter, prefix, suffix));
-        return new_line;
-    }
     static String delimiterConverter(String str, List<String> list, String general_delimiter){
         for (int i = 0; i< list.size(); i++) {
             str = str.replace(list.get(i), general_delimiter);
@@ -54,10 +40,5 @@ public class Utility {
         }
         list = arrlist.stream().toList();
         return list;
-    }
-    static Object[] invertUsingStreams(Object[] array) {
-        return IntStream.rangeClosed(1, array.length)
-                .mapToObj(i -> array[array.length - i])
-                .toArray();
     }
 }

@@ -9,7 +9,8 @@ public class Main {
         do {
             Utility.printDelimiter(0);
             String input_line = Utility.inputString("Enter value: ");
-            out.println(add(input_line));
+            out.println("Sum the numbers is : "+add(input_line));
+            Utility.printDelimiter(0);
             main_choise = Utility.inputString("Reset task ? (YES - y, No - any symbol): ");
         }
         while (Objects.equals(main_choise, "y"));
@@ -32,9 +33,19 @@ public class Main {
             delimiter_list.add(",");
 
         input = Utility.delimiterConverter(input, delimiter_list,"`");
-        out.println(input);
         List<String> number_elements = Arrays.asList(input.split("`"));
+
+        ArrayList arrlist = new ArrayList(number_elements);
+        if (arrlist.contains("")) {
+            arrlist.removeAll(Arrays.asList("", null));
+            Utility.printDelimiter(0);
+            out.println("You entered a double delimiter, but the program has dealt with this problem. Don't do this)");
+            Utility.printDelimiter(0);
+        }
+        number_elements = arrlist.stream().toList();
+
         out.println(number_elements);
+        Utility.printDelimiter(0);
             if (isHaveNegativeValues(number_elements))
                 throw new NegativeException(negative_values.toString());
         number_elements = Utility.removeNumberBiggerThan(1000, number_elements);
@@ -58,3 +69,6 @@ public class Main {
         return A;
     }
 }
+
+//[**][+][***][++]\n1**5+9***2++3\n4
+//[**][+][***][++]\n1*****2++3\n4+5
