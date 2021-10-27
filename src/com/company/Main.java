@@ -4,7 +4,7 @@ import java.util.*;
 import static java.lang.System.*;
 public class Main {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws NegativeException {
         String main_choise;
         do {
             Utility.printDelimiter(0);
@@ -14,7 +14,7 @@ public class Main {
         }
         while (Objects.equals(main_choise, "y"));
     }
-    static int add(String input){
+    static int add(String input) throws NegativeException{
         final String[] delimiters = new String[] {"\\n"};
 
         ArrayList<String> delimiter_list = new ArrayList<>(Arrays.asList(delimiters));
@@ -32,10 +32,25 @@ public class Main {
         out.println(input);
         List<String> number_elements = Arrays.asList(input.split("`"));
         out.println(number_elements);
+            if (isHaveNegativeValues(number_elements))
+                throw new NegativeException(negative_values.toString());
         int sum = Utility.sumOfListItem(number_elements);
         return sum;
     }
     static boolean isDelimiterParams(String str){
         return str.contains("//");
+    }
+    static ArrayList<Integer> negative_values = new ArrayList<Integer>();
+    static boolean isHaveNegativeValues(List<String> list){
+        boolean A = false;
+        for (int i = 0; i< list.size(); i++){
+            try {
+                if (Integer.parseInt(list.get(i)) < 0) {
+                    A = true;
+                    negative_values.add(Integer.parseInt(list.get(i)));
+                }
+            }catch (Exception ignored){};
+        }
+        return A;
     }
 }
