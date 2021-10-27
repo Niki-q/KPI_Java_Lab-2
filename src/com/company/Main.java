@@ -34,6 +34,7 @@ public class Main {
         out.println(number_elements);
             if (isHaveNegativeValues(number_elements))
                 throw new NegativeException(negative_values.toString());
+        number_elements = Utility.removeNumberBiggerThan(1000, number_elements);
         int sum = Utility.sumOfListItem(number_elements);
         return sum;
     }

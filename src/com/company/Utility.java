@@ -1,5 +1,6 @@
 package com.company;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
@@ -44,5 +45,14 @@ public class Utility {
             str = str.replace(list.get(i), general_delimiter);
         }
         return str;
+    }
+    static List<String> removeNumberBiggerThan(int than, List<String> list){
+        ArrayList arrlist = new ArrayList(list);
+        for (int i = 0; i< list.size(); i++) {
+            if (Integer.parseInt(list.get(i)) > than)
+                arrlist.remove(list.indexOf(list.get(i)));
+        }
+        list = arrlist.stream().toList();
+        return list;
     }
 }
