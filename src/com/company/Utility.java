@@ -1,7 +1,9 @@
 package com.company;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 public class Utility {
     static String inputString(String message){
@@ -25,10 +27,22 @@ public class Utility {
     static int sumOfListItem(List<String> list){
         int sum = 0;
         try {
-            for (int i = 0; i<= list.size(); i++){
+            for (int i = 0; i< list.size(); i++){
                 sum += Integer.parseInt(list.get(i));
             }
         }catch (Exception ignored){};
         return sum;
+    }
+    static String List2String(List<String> list,String delimiter,String prefix,String suffix){
+        String new_line = list.stream()
+                .map(n -> String.valueOf(n))
+                .collect(Collectors.joining(delimiter, prefix, suffix));
+        return new_line;
+    }
+    static String delimiterConverter(String str, List<String> list, String general_delimiter){
+        for (int i = 0; i< list.size(); i++) {
+            str = str.replace(list.get(i), general_delimiter);
+        }
+        return str;
     }
 }
