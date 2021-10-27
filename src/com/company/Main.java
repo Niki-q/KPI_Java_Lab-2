@@ -23,6 +23,8 @@ public class Main {
             String delimiters_params = input.substring(2,input.indexOf("\\n"));
             delimiters_params = delimiters_params.substring(1,delimiters_params.length()-1);
             String[] delimiters_arr = delimiters_params.split("]\\[");
+            Arrays.sort(delimiters_arr);
+            Collections.reverse(Arrays.asList(delimiters_arr));
             delimiter_list.addAll(Arrays.asList(delimiters_arr));
             input = input.replace(input.substring(0,input.indexOf("\\n")+2),"");
         }

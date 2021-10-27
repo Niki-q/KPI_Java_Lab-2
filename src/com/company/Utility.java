@@ -1,10 +1,10 @@
 package com.company;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 public class Utility {
     static String inputString(String message){
@@ -54,5 +54,10 @@ public class Utility {
         }
         list = arrlist.stream().toList();
         return list;
+    }
+    static Object[] invertUsingStreams(Object[] array) {
+        return IntStream.rangeClosed(1, array.length)
+                .mapToObj(i -> array[array.length - i])
+                .toArray();
     }
 }
